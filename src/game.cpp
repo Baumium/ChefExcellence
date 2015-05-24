@@ -17,7 +17,7 @@ Game::Game() {
     chefWalkingRight.loadFromFile("assets/chef/ChefWalkingRight.png");
     chefWalkingLeft.loadFromFile("assets/chef/ChefWalkingLeft.png");
     chefClimbing.loadFromFile("assets/chef/ChefClimbing.png");
-    breadstick.loadFromFile("assets/chef/Breadstick.png");
+    breadstick.loadFromFile("assets/chef/Breadstick1.png");
     player = new Player(chefWalkingRight, breadstick);
 
     background.loadFromFile("assets/map/level1/Background.png");

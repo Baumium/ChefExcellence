@@ -42,7 +42,7 @@ Player::Player(const sf::Texture &texture, sf::Texture &breadstickTexture) :
 void Player::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     //Draw breadsticks
     for(uint i = 0; i < projectiles.size(); i++) {
-        target.draw(projectiles.at(i).getSprite(), states);
+        target.draw(projectiles.at(i), states);
     }
 
     //Draw player
@@ -69,7 +69,7 @@ void Player::jump() {
 void Player::throwBreadstick() {
     if(timeSinceThrowing > breadstickDelay) {
         timeSinceThrowing = 0;
-        Projectile projectile(breadstickTexture, 8, facingDirection, getPosition().x, getPosition().y);
+        Projectile projectile(breadstickTexture, 8, facingDirection, getPosition().x + getLocalBounds().width / 2, getPosition().y + getLocalBounds().height / 2);
         projectiles.push_back(projectile);
     }
 }
@@ -148,7 +148,7 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport) {
     //Update projectiles
     timeSinceThrowing += deltaTime.asMilliseconds();
     for(uint i = 0; i < projectiles.size(); i++) {
-        projectiles.at(i).update();
+        projectiles.at(i).update(deltaTime);
         if(projectiles.at(i).isOffScreen(viewport)) {
             projectiles.erase(projectiles.begin() + i);
         }

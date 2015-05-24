@@ -2,18 +2,19 @@
 #define PROJECTILE_HPP
 
 #include <SFML/Graphics.hpp>
-#include "entity.hpp"
+#include "AnimatedSprite.hpp"
 #include "direction.hpp"
 
-class Projectile : public Entity {
+class Projectile : public AnimatedSprite {
     private:
+        Animation animation;
         float speed;
         Direction direction;
 
     public:
         Projectile(const sf::Texture &texture, float speed, Direction direction, float x, float y);
         bool isOffScreen(sf::Vector2f viewport) const;
-        void update();
+        void update(sf::Time deltaTime);
 };
 
 #endif
