@@ -31,7 +31,6 @@ Projectile::Projectile(const sf::Texture &texture, float speed, Direction direct
 }
 
 bool Projectile::isOffScreen(sf::Vector2f viewport) const {
-    std::cout << getPosition().x << "\t" << getPosition().y << std::endl;
     if(getPosition().x + getLocalBounds().width < viewport.x - Game::SCREEN_WIDTH
             || getPosition().x > viewport.x
             || getPosition().y + getLocalBounds().height < 0
