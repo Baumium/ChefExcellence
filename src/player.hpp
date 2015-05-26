@@ -5,6 +5,7 @@
 #include "AnimatedSprite.hpp"
 #include "direction.hpp"
 #include "projectile.hpp"
+#include "entity.hpp"
 
 class Player : public AnimatedSprite {
     public:
@@ -12,7 +13,7 @@ class Player : public AnimatedSprite {
 
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         void setPosition(float x, float y);
-        void update(sf::Time deltaTime, sf::Vector2f viewport);
+        void update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entity> &platforms);
         void move(Direction hDirection);
         void jump();
         void throwBreadstick();
@@ -40,6 +41,9 @@ class Player : public AnimatedSprite {
         Direction facingDirection;
         Direction hDirection;
         Direction vDirection;
+
+        bool canHMove;
+        bool canVMove;
 
 
         //Breadstick projectile

@@ -6,7 +6,11 @@ Projectile::Projectile(const sf::Texture &texture, float speed, Direction direct
     int frameWidth = 816 / 17;
     int frameHeight = 48;
 
-    setPosition(x - frameWidth / 2, y - frameHeight / 2);
+    if(direction == LEFT) {
+        setPosition(x - frameWidth, y - frameHeight / 2);
+    } else if(direction == RIGHT) {
+        setPosition(x, y - frameHeight / 2);
+    }
 
     animation.setSpriteSheet(texture);
 

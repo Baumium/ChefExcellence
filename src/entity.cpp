@@ -21,12 +21,16 @@ void Entity::setPosition(int x, int y) {
     sprite.setPosition(x, y);
 }
 
+void Entity::setScale(float x, float y) {
+    sprite.setScale(x, y);
+}
+
 sf::Vector2f Entity::getPosition() const {
     return sprite.getPosition();
 }
 
-sf::IntRect Entity::getRect() const {
-    return sprite.getTextureRect();
+sf::FloatRect Entity::getRect() const {
+    return sprite.getGlobalBounds();
 }
 
 sf::Sprite Entity::getSprite() const {

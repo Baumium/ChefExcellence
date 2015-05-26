@@ -15,8 +15,9 @@ class Entity : public sf::Drawable {
 
         void move(int x, int y);
         void setPosition(int x, int y);
+        void setScale(float x, float y);
         sf::Vector2f getPosition() const;
-        sf::IntRect getRect() const;
+        sf::FloatRect getRect() const;
         sf::Sprite getSprite() const;
 };
 

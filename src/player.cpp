@@ -33,6 +33,9 @@ Player::Player(const sf::Texture &texture, sf::Texture &breadstickTexture) :
     currentVSpeed = maxVSpeed;
     vAcceleration = 0.9;
 
+    canHMove = true;
+    canVMove = true;
+
     //Breadstick projectile
     timeSinceThrowing = 0;
     breadstickDelay = 500;
@@ -61,39 +64,76 @@ void Player::move(Direction hDirection) {
 }
 
 void Player::jump() {
-    if(vDirection != DOWN) {
+    if(vDirection != DOWN && vDirection != UP) {
         vDirection = UP;
+        //Reset jump speed
+        currentVSpeed = maxVSpeed;
     }
 }
 
 void Player::throwBreadstick() {
     if(timeSinceThrowing > breadstickDelay) {
         timeSinceThrowing = 0;
-        Projectile projectile(breadstickTexture, 8, facingDirection, getPosition().x + getLocalBounds().width / 2, getPosition().y + getLocalBounds().height / 2);
+        Projectile projectile(breadstickTexture, 8, facingDirection, getPosition().x + getGlobalBounds().width / 2, getPosition().y + getGlobalBounds().height / 2);
         projectiles.push_back(projectile);
     }
 }
 
-void Player::update(sf::Time deltaTime, sf::Vector2f viewport) {
+void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entity> &platforms) {
     //Update animation
     play(currentAnimation);
     AnimatedSprite::update(deltaTime);
 
+    //Collision detection with level platforms
+    for(auto &platform : platforms) {
+        //Chef (like check...except chef) x collisions if y positions match up
+        if(platform.getPosition().y <= getPosition().y + getGlobalBounds().height
+                && platform.getPosition().y + platform.getRect().height >= getPosition().y) {
+            if((hDirection == LEFT
+                    && getPosition().x - currentHSpeed < platform.getPosition().x + platform.getRect().width
+                    && getPosition().x + getGlobalBounds().width - currentHSpeed > platform.getPosition().x)
+                    || (hDirection == RIGHT
+                        && getPosition().x + getGlobalBounds().width + currentHSpeed > platform.getPosition().x
+                        && getPosition().x + currentHSpeed < platform.getPosition().x + platform.getRect().width)) {
+                canHMove = false;
+            } else {
+                canHMove = true;
+            }
+
+        }
+
+        //Check y collisions
+        if(platform.getPosition().y <= getPosition().y + getGlobalBounds().height + currentVSpeed
+                && platform.getPosition().y + platform.getRect().height > getPosition().y) {
+            if((vDirection == DOWN
+                    && getPosition().x + getGlobalBounds().width >= platform.getPosition().x
+                    && getPosition().x <= platform.getPosition().x + platform.getRect().width)) {
+                canVMove = false;
+            } else {
+                canVMove = true;
+            }
+        }
+    }
+
     //Move left and right
     switch(hDirection) {
         case LEFT:
-            facingDirection = LEFT;
-            AnimatedSprite::move(-currentHSpeed, 0);
-            if(currentHSpeed < maxHSpeed) {
-                currentHSpeed *= hAcceleration;
+            if(canHMove) {
+                facingDirection = LEFT;
+                AnimatedSprite::move(-currentHSpeed, 0);
+                if(currentHSpeed < maxHSpeed) {
+                    currentHSpeed *= hAcceleration;
+                }
             }
             break;
         case RIGHT:
-            currentAnimation = walkingRight;
-            facingDirection = RIGHT;
-            AnimatedSprite::move(currentHSpeed, 0);
-            if(currentHSpeed < maxHSpeed) {
-                currentHSpeed *= hAcceleration;
+            if(canHMove) {
+                currentAnimation = walkingRight;
+                facingDirection = RIGHT;
+                AnimatedSprite::move(currentHSpeed, 0);
+                if(currentHSpeed < maxHSpeed) {
+                    currentHSpeed *= hAcceleration;
+                }
             }
             break;
         default:
@@ -109,37 +149,41 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport) {
     //Move up and down
     switch(vDirection) {
         case UP:
-            AnimatedSprite::move(0, -currentVSpeed);
-            currentVSpeed *= vAcceleration;
-            if(currentVSpeed < minVSpeed) {
-                vDirection = DOWN;
-            }
-            //If touching top of screen, stop jumping (TEMP)
-            if(getPosition().y <= 0) {
-                vDirection = NONE;
+            if(canVMove) {
+                AnimatedSprite::move(0, -currentVSpeed);
+                currentVSpeed *= vAcceleration;
+                if(currentVSpeed < minVSpeed) {
+                    vDirection = DOWN;
+                }
             }
             break;
         case DOWN:
-            AnimatedSprite::move(0, currentVSpeed);
-            //Fix player getting moved off screen
-            if(getPosition().y + getLocalBounds().height > Game::SCREEN_HEIGHT) {
-                setPosition(getPosition().x, Game::SCREEN_HEIGHT - getLocalBounds().height);
-            }
+            if(canVMove) {
+                AnimatedSprite::move(0, currentVSpeed);
+                //Fix player getting moved off screen
+                if(getPosition().y + getGlobalBounds().height > Game::SCREEN_HEIGHT) {
+                    setPosition(getPosition().x, Game::SCREEN_HEIGHT - getGlobalBounds().height);
+                }
 
-            //If touching bottom of screen, stop falling
-            if(getPosition().y + getLocalBounds().height >= Game::SCREEN_HEIGHT) {
+                //If touching bottom of screen, stop falling
+                if(getPosition().y + getGlobalBounds().height >= Game::SCREEN_HEIGHT) {
+                    vDirection = NONE;
+                }
+
+                //Adjust speed
+                if(currentVSpeed < maxVSpeed) {
+                    currentVSpeed /= vAcceleration;
+                }
+            } else {
                 vDirection = NONE;
-            }
-
-            //Adjust speed
-            if(currentVSpeed < maxVSpeed) {
-                currentVSpeed /= vAcceleration;
             }
             break;
         case NONE:
             //If player is not touching bottom of screen, fall
-            if(getPosition().y + getLocalBounds().height < Game::SCREEN_HEIGHT) {
+            if(canVMove && getPosition().y + getGlobalBounds().height < Game::SCREEN_HEIGHT) {
                 vDirection = DOWN;
+                //Reset fall speed
+                currentVSpeed = minVSpeed;
             }
         default:
             break;

@@ -21,7 +21,8 @@ Game::Game() {
     player = new Player(chefWalkingRight, breadstick);
 
     background.loadFromFile("assets/map/level1/Background.png");
-    level = new Level(background);
+    platform.loadFromFile("assets/map/level1/Platform.png");
+    level = new Level(background, platform);
 }
 
 void Game::update() {
@@ -41,6 +42,7 @@ void Game::update() {
                         break;
 
                 }
+                break;
             default:
                 break;
         }
@@ -68,7 +70,7 @@ void Game::update() {
             player->throwBreadstick();
         }
 
-        player->update(frameTime, sf::Vector2f(view.getCenter().x + SCREEN_WIDTH / 2, view.getCenter().y + SCREEN_HEIGHT / 2));
+        player->update(frameTime, sf::Vector2f(view.getCenter().x + SCREEN_WIDTH / 2, view.getCenter().y + SCREEN_HEIGHT / 2), level->getPlatforms());
 
         view.move((player->getPosition().x - view.getCenter().x) / 10.0,
                 (player->getPosition().y + player->getLocalBounds().height - SCREEN_HEIGHT / 2 - view.getCenter().y + 50) / 20.0);

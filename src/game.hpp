@@ -23,6 +23,7 @@ class Game {
         Player *player;
 
         sf::Texture background;
+        sf::Texture platform;
         Level *level;
 
     public:
