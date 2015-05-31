@@ -23,10 +23,10 @@ Player::Player(const sf::Texture &texture, sf::Texture &breadstickTexture) :
     hDirection = NONE;
     vDirection = NONE;
 
-    maxHSpeed = 5;
-    minHSpeed = 2;
+    maxHSpeed = 4;
+    minHSpeed = 1.5;
     currentHSpeed = minHSpeed;
-    hAcceleration = 1.1;
+    hAcceleration = 1.05;
 
     maxVSpeed = 10;
     minVSpeed = 2;
@@ -100,6 +100,8 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
                 canHMove = true;
             }
 
+        } else {
+            canHMove = true;
         }
 
         //Check y collisions
@@ -124,6 +126,8 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
                 if(currentHSpeed < maxHSpeed) {
                     currentHSpeed *= hAcceleration;
                 }
+            } else {
+                currentHSpeed = minHSpeed;
             }
             break;
         case RIGHT:
@@ -134,6 +138,8 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
                 if(currentHSpeed < maxHSpeed) {
                     currentHSpeed *= hAcceleration;
                 }
+            } else {
+                currentHSpeed = minHSpeed;
             }
             break;
         default:
@@ -143,6 +149,7 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
                 //TODO: currentAnimation = standingLeft
                 currentAnimation = standingRight;
             }
+            currentHSpeed = minHSpeed;
             break;
     }
 

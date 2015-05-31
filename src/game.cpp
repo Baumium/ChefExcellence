@@ -7,6 +7,7 @@ const int Game::SCREEN_HEIGHT = 480;
 Game::Game() {
     window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Chef Excellence");
     window.setKeyRepeatEnabled(false);
+    window.setFramerateLimit(60);
     view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
     window.setView(view);
 
@@ -51,7 +52,7 @@ void Game::update() {
     if(isPlaying) {
         sf::Time frameTime = frameClock.restart();
 
-        //Player vertical movement
+        //Player horiztonal movement
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             player->move(LEFT);
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
