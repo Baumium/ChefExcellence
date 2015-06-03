@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<level id="1">
+    <background>
+        <src>level1/Background.png</src>
+        <x>0</x>
+        <y>200</y>
+    </background>
+    <platforms>
+        <platform>
+            <src>level1/Platform.png</src>
+            <x>200</x>
+            <y>710</y>
+            <width>100</width>
+            <height>50</height>
+        </platform>
+        <platform>
+            <src>level1/Platform.png</src>
+            <x>400</x>
+            <y>710</y>
+            <width>100</width>
+            <height>50</height>
+        </platform>
+    </platforms>
+</level>

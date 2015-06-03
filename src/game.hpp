@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "player.hpp"
 #include "level.hpp"
+#include "levelhandler.hpp"
 
 class Game {
     private:
@@ -25,6 +26,8 @@ class Game {
         sf::Texture background;
         sf::Texture platform;
         Level *level;
+        std::vector<Level> levels;
+        LevelHandler *levelHandler;
 
     public:
         Game();

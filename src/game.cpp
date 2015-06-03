@@ -1,13 +1,16 @@
 #include "game.hpp"
 #include "direction.hpp"
+#include "pugixml.hpp"
+#include <iostream>
 
-const int Game::SCREEN_WIDTH = 640;
-const int Game::SCREEN_HEIGHT = 480;
+const int Game::SCREEN_WIDTH = 1366;
+const int Game::SCREEN_HEIGHT = 768;
 
 Game::Game() {
-    window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Chef Excellence");
+    window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Chef Excellence", sf::Style::Fullscreen);
     window.setKeyRepeatEnabled(false);
     window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
     view.reset(sf::FloatRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
     window.setView(view);
 
@@ -24,6 +27,9 @@ Game::Game() {
     background.loadFromFile("assets/map/level1/Background.png");
     platform.loadFromFile("assets/map/level1/Platform.png");
     level = new Level(background, platform);
+    levels.push_back(*level);
+    levelHandler = new LevelHandler("assets/map/data.xml");
+    levelHandler->createLevels(levels);
 }
 
 void Game::update() {
