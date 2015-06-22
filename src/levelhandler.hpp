@@ -8,6 +8,7 @@ class LevelHandler {
     private:
         pugi::xml_document file;
         bool isLoaded;
+
     public:
         LevelHandler(const char* path);
         void createLevels(std::vector<Level> &levels);

@@ -54,6 +54,9 @@ public:
     sf::Time getFrameTime() const;
     void setFrame(std::size_t newFrame, bool resetTime = true);
 
+    float getScaleX() const;
+    void setScaleX(float scaleX);
+
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 private:
     const Animation* m_animation;
@@ -65,7 +68,7 @@ private:
     const sf::Texture* m_texture;
     sf::Vertex m_vertices[4];
 
-
+    float scaleX;
 };
 
 #endif // ANIMATEDSPRITE_INCLUDE

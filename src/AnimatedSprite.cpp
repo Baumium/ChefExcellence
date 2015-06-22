@@ -177,6 +177,14 @@ void AnimatedSprite::update(sf::Time deltaTime)
     }
 }
 
+float AnimatedSprite::getScaleX() const {
+    return scaleX;
+}
+
+void AnimatedSprite::setScaleX(float scaleX) {
+    this->scaleX = scaleX;
+}
+
 void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     if (m_animation && m_texture)

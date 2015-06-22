@@ -17,6 +17,9 @@ void LevelHandler::createLevels(std::vector<Level> &levels) {
             for(pugi::xml_node node = level.first_child(); node; node = node.next_sibling()) {
                 std::cout << "\t" << node.name() << " : " << node.value() << std::endl;
                 //TODO: create levels based on xml values
+                if(node.value() == "background") {
+                    std::cout << "greetings" << std::endl;
+                }
             }
         }
     } else {
