@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "direction.hpp"
+#include "screen.hpp"
 #include "pugixml.hpp"
 #include <iostream>
 
@@ -7,7 +8,8 @@ const int Game::SCREEN_WIDTH = 1366;
 const int Game::SCREEN_HEIGHT = 768;
 
 Game::Game() {
-    window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Chef Excellence", sf::Style::Fullscreen);
+    //Set up rendering window
+    window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Chef Excellence"/*, sf::Style::Fullscreen*/);
     window.setKeyRepeatEnabled(false);
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -16,20 +18,12 @@ Game::Game() {
 
     isPlaying = true;
 
-    chefStandingRight.loadFromFile("assets/chef/ChefStandingRight.png");
-    chefStandingLeft.loadFromFile("assets/chef/ChefStandingLeft.png");
-    chefWalkingRight.loadFromFile("assets/chef/ChefWalkingRight.png");
-    chefWalkingLeft.loadFromFile("assets/chef/ChefWalkingLeft.png");
-    chefClimbing.loadFromFile("assets/chef/ChefClimbing.png");
-    breadstick.loadFromFile("assets/chef/Breadstick.png");
-    player = new Player(chefWalkingRight, breadstick);
+    //Screens
+    currentScreen = NULL;
+    gameScreen = new GameScreen(&view);
 
-    background.loadFromFile("assets/map/level1/Background.png");
-    platform.loadFromFile("assets/map/level1/Platform.png");
-    level = new Level(background, platform);
-    levels.push_back(*level);
-    levelHandler = new LevelHandler("assets/map/data.xml");
-    levelHandler->createLevels(levels);
+    //Start game with game screen (temporary until menu screen created)
+    setScreen(gameScreen);
 }
 
 void Game::update() {
@@ -56,41 +50,16 @@ void Game::update() {
     }
 
     if(isPlaying) {
-        sf::Time frameTime = frameClock.restart();
-
-        //Player horiztonal movement
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            player->move(LEFT);
-        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            player->move(RIGHT);
-        } else {
-            player->move(NONE);
-        }
-
-        //Player vertical movement
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            player->jump();
-        }
-
-        //Breadstick throwing
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            player->throwBreadstick();
-        }
-
-        player->update(frameTime, sf::Vector2f(view.getCenter().x + SCREEN_WIDTH / 2, view.getCenter().y + SCREEN_HEIGHT / 2), level->getPlatforms());
-
-        view.move((player->getPosition().x - view.getCenter().x) / 10.0,
-                (player->getPosition().y + player->getLocalBounds().height - SCREEN_HEIGHT / 2 - view.getCenter().y + 50) / 20.0);
-        window.setView(view);
+        currentScreen->update();
     }
 }
 
 void Game::render() {
     window.clear(sf::Color::Red);
 
-    window.draw(*level);
-    window.draw(*player);
+    window.draw(*currentScreen);
 
+    window.setView(view);
     window.display();
 }
 
@@ -99,4 +68,8 @@ void Game::execute() {
         update();
         render();
     }
+}
+
+void Game::setScreen(Screen *screen) {
+    currentScreen = screen;
 }

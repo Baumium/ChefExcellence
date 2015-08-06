@@ -2,9 +2,9 @@
 <levels>
     <level id="1">
         <background src="level1/Background.png" x="0" y="200" />
-        <platforms>
-            <platform src="level1/Platform.png" x="200" y="710" width="100" height="50" />
-            <platform src="level1/Platform.png" x="400" y="710" width="100" height="50" />
-        </platforms>
+        <entities>
+            <entity type="platform" src="level1/Platform.png" x="200" y="710" width="100" height="50" />
+            <entity type="platform" src="level1/Platform.png" x="400" y="710" width="100" height="50" />
+        </entities>
     </level>
 </levels>
