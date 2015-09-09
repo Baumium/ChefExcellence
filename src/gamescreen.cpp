@@ -2,6 +2,7 @@
 #include "game.hpp"
 
 GameScreen::GameScreen(sf::View *view) {
+    //Create player, our venerable chef
     chefStandingRight.loadFromFile("assets/chef/ChefStandingRight.png");
     chefStandingLeft.loadFromFile("assets/chef/ChefStandingLeft.png");
     chefWalkingRight.loadFromFile("assets/chef/ChefWalkingRight.png");
@@ -10,6 +11,7 @@ GameScreen::GameScreen(sf::View *view) {
     breadstick.loadFromFile("assets/chef/Breadstick.png");
     player = new Player(chefWalkingRight, breadstick);
 
+    //Create levels
     background.loadFromFile("assets/map/level1/Background.png");
     platform.loadFromFile("assets/map/level1/Platform.png");
     level = new Level(background, platform);
@@ -52,4 +54,8 @@ void GameScreen::update() {
 
         view->move((player->getPosition().x - view->getCenter().x) / 10.0,
                 (player->getPosition().y + player->getLocalBounds().height - Game::SCREEN_HEIGHT / 2 - view->getCenter().y + 50) / 20.0);
+}
+
+void GameScreen::handleEvent(sf::Event event) {
+
 }

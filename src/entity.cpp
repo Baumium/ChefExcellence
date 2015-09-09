@@ -33,6 +33,3 @@ sf::FloatRect Entity::getRect() const {
     return sprite.getGlobalBounds();
 }
 
-sf::Sprite Entity::getSprite() const {
-    return sprite;
-}

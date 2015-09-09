@@ -4,8 +4,8 @@
 #include "pugixml.hpp"
 #include <iostream>
 
-const int Game::SCREEN_WIDTH = 1366;
-const int Game::SCREEN_HEIGHT = 768;
+const int Game::SCREEN_WIDTH = 800;
+const int Game::SCREEN_HEIGHT = 480;
 
 Game::Game() {
     //Set up rendering window
@@ -19,11 +19,13 @@ Game::Game() {
     isPlaying = true;
 
     //Screens
-    currentScreen = NULL;
+    currentScreen = nullptr;
     gameScreen = new GameScreen(&view);
+    mainMenuScreen = new MainMenuScreen();
+
 
     //Start game with game screen (temporary until menu screen created)
-    setScreen(gameScreen);
+    setScreen(mainMenuScreen);
 }
 
 void Game::update() {
@@ -41,12 +43,12 @@ void Game::update() {
                         isPlaying = !isPlaying;
                     default:
                         break;
-
                 }
                 break;
             default:
                 break;
         }
+        currentScreen->handleEvent(event);
     }
 
     if(isPlaying) {

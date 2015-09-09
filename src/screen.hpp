@@ -13,6 +13,7 @@ class Screen : public sf::Drawable {
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual void update();
+        virtual void handleEvent(sf::Event event);
 
     private:
         bool isVisible;

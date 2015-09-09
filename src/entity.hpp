@@ -18,7 +18,6 @@ class Entity : public sf::Drawable {
         void setScale(float x, float y);
         sf::Vector2f getPosition() const;
         sf::FloatRect getRect() const;
-        sf::Sprite getSprite() const;
 };
 
 #endif

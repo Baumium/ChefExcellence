@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "player.hpp"
 #include "gamescreen.hpp"
+#include "mainmenuscreen.hpp"
 #include "level.hpp"
 #include "levelhandler.hpp"
 
@@ -19,6 +20,7 @@ class Game {
         //Screens
         Screen *currentScreen;
         GameScreen *gameScreen;
+        MainMenuScreen *mainMenuScreen;
 
         void update();
         void render();
