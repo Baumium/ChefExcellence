@@ -25,7 +25,7 @@ Game::Game() {
 
 
     //Start game with game screen (temporary until menu screen created)
-    setScreen(mainMenuScreen);
+    setScreen(gameScreen);
 }
 
 void Game::update() {
