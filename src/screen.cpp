@@ -28,3 +28,7 @@ void Screen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 void Screen::update() {
 
 }
+
+void Screen::handleEvent(sf::Event event) {
+
+}
