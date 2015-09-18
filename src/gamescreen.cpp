@@ -56,6 +56,11 @@ void GameScreen::update() {
                 (player->getPosition().y + player->getLocalBounds().height - Game::SCREEN_HEIGHT / 2 - view->getCenter().y + 50) / 20.0);
 }
 
-void GameScreen::handleEvent(sf::Event event) {
+void GameScreen::handleEvent(sf::Event &event) {
 
+}
+
+void GameScreen::start() {
+    Screen::start();
+    view->reset(sf::FloatRect(0, 0, Game::SCREEN_WIDTH, Game::SCREEN_HEIGHT));
 }

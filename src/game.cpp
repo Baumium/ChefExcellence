@@ -7,6 +7,10 @@
 const int Game::SCREEN_WIDTH = 800;
 const int Game::SCREEN_HEIGHT = 480;
 
+Screen *Game::currentScreen = nullptr;
+GameScreen *Game::gameScreen = nullptr;
+MainMenuScreen *Game::mainMenuScreen = nullptr;
+
 Game::Game() {
     //Set up rendering window
     window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Chef Excellence"/*, sf::Style::Fullscreen*/);
@@ -21,11 +25,11 @@ Game::Game() {
     //Screens
     currentScreen = nullptr;
     gameScreen = new GameScreen(&view);
-    mainMenuScreen = new MainMenuScreen();
+    mainMenuScreen = new MainMenuScreen(&view);
 
 
     //Start game with game screen (temporary until menu screen created)
-    setScreen(gameScreen);
+    setScreen(mainMenuScreen);
 }
 
 void Game::update() {
@@ -74,4 +78,6 @@ void Game::execute() {
 
 void Game::setScreen(Screen *screen) {
     currentScreen = screen;
+    currentScreen->start();
+    currentScreen->show();
 }

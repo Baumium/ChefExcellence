@@ -18,20 +18,22 @@ class Game {
         sf::Clock frameClock;
 
         //Screens
-        Screen *currentScreen;
-        GameScreen *gameScreen;
-        MainMenuScreen *mainMenuScreen;
+        static Screen *currentScreen;
 
         void update();
         void render();
-        void setScreen(Screen *screen);
 
     public:
         Game();
         void execute();
 
+        static void setScreen(Screen *screen);
+
         static const int SCREEN_WIDTH;
         static const int SCREEN_HEIGHT;
+
+        static GameScreen *gameScreen;
+        static MainMenuScreen *mainMenuScreen;
 };
 
 #endif

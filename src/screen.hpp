@@ -6,14 +6,14 @@
 class Screen : public sf::Drawable {
     public:
         Screen();
-        void show();
-        void hide();
-        void start();
-        void pause();
+        virtual void show();
+        virtual void hide();
+        virtual void start();
+        virtual void pause();
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual void update();
-        virtual void handleEvent(sf::Event event);
+        virtual void handleEvent(sf::Event &event);
 
     private:
         bool isVisible;

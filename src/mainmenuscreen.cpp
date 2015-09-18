@@ -1,9 +1,13 @@
 #include "mainmenuscreen.hpp"
+#include "game.hpp"
+#include <iostream>
 
-MainMenuScreen::MainMenuScreen() {
+MainMenuScreen::MainMenuScreen(sf::View *view) {
+    this->view = view;
+
     normalPlay.loadFromFile("./assets/ui/normalButton.png");
     clickedPlay.loadFromFile("./assets/ui/clickedButton.png");
-    playButton = new Button(normalPlay, clickedPlay, normalPlay, 50, 50);
+    playButton = new Button(normalPlay, clickedPlay, clickedPlay, 50, 50);
 }
 
 void MainMenuScreen::update() {
@@ -14,17 +18,11 @@ void MainMenuScreen::draw(sf::RenderTarget &target, sf::RenderStates states) con
     target.draw(*playButton, states);
 }
 
-void MainMenuScreen::handleEvent(sf::Event event) {
-    //Check if mouse is released on top of the button
-    if(event.type == sf::Event::MouseButtonReleased) {
-        float x = sf::Mouse::getPosition().x;
-        float y = sf::Mouse::getPosition().y;
+void MainMenuScreen::handleEvent(sf::Event &event) {
+    playButton->update(event);
+}
 
-        if(x > playButton->getX()
-                && x < playButton->getX() + playButton->getWidth()
-                && y > playButton->getY()
-                && y < playButton->getY() + playButton->getHeight()) {
-            playButton->changeState(Button::CLICKED);
-        }
-    }
+void MainMenuScreen::start() {
+    Screen::start();
+    view->reset(sf::FloatRect(0, 0, Game::SCREEN_WIDTH, Game::SCREEN_HEIGHT));
 }

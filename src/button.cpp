@@ -1,4 +1,5 @@
 #include "button.hpp"
+#include "game.hpp"
 
 Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, float x, float y) {
     this->normal = normal;
@@ -6,10 +7,6 @@ Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, 
     this->hovered = hovered;
     sprite = sf::Sprite(normal);
     sprite.setPosition(x, y);
-}
-
-void Button::update() {
-
 }
 
 
@@ -31,6 +28,18 @@ void Button::changeState(ButtonState state) {
     }
 }
 
+bool Button::checkOverlap(float x, float y) {
+    if(x > getX()
+            && x < getX() + getWidth()
+            && y > getY()
+            && y < getY() + getHeight()) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 float Button::getX() {
     return sprite.getPosition().x;
 }
@@ -45,4 +54,25 @@ float Button::getWidth() {
 
 float Button::getHeight() {
     return sprite.getGlobalBounds().height;
+}
+
+void Button::update(sf::Event &event) {
+    //Check is mouse is hovering over button
+    if(event.type == sf::Event::MouseMoved) {
+        if(checkOverlap(event.mouseMove.x, event.mouseMove.y)) {
+            changeState(HOVERED);
+        } else {
+            changeState(NORMAL);
+        }
+    } else if(event.type == sf::Event::MouseButtonPressed) {
+        //Likewise, check if mouse is pressed on top of the button
+        if(checkOverlap(event.mouseButton.x, event.mouseButton.y)) {
+            changeState(CLICKED);
+        }
+    } else if(event.type == sf::Event::MouseButtonReleased) {
+        if(checkOverlap(event.mouseButton.x, event.mouseButton.y)) {
+            //TODO: Perform button action when mouse is released on button
+            Game::setScreen(Game::gameScreen);
+        }
+    }
 }

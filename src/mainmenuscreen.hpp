@@ -6,17 +6,21 @@
 
 class MainMenuScreen : public Screen {
     private:
+        sf::View *view;
+
         sf::Texture normalPlay;
         sf::Texture clickedPlay;
         sf::Texture hoverPlay;
         Button *playButton;
 
     public:
-        MainMenuScreen();
+        MainMenuScreen(sf::View *view);
 
         void update();
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-        void handleEvent(sf::Event event);
+        void handleEvent(sf::Event &event);
+
+        void start();
 };
 
 #endif

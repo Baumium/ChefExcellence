@@ -29,6 +29,6 @@ void Screen::update() {
 
 }
 
-void Screen::handleEvent(sf::Event event) {
+void Screen::handleEvent(sf::Event &event) {
 
 }

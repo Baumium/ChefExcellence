@@ -20,9 +20,10 @@ class Button : public sf::Drawable {
             HOVERED
         };
 
-        void update();
+        void update(sf::Event &event);
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         void changeState(ButtonState state);
+        bool checkOverlap(float x, float y);
         float getX();
         float getY();
         float getWidth();
