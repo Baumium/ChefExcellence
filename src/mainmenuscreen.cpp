@@ -8,6 +8,8 @@ MainMenuScreen::MainMenuScreen(sf::View *view) {
     normalPlay.loadFromFile("./assets/ui/normalButton.png");
     clickedPlay.loadFromFile("./assets/ui/clickedButton.png");
     playButton = new Button(normalPlay, clickedPlay, clickedPlay, 50, 50);
+
+
 }
 
 void MainMenuScreen::update() {

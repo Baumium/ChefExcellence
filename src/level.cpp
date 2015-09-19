@@ -5,7 +5,7 @@ Level::Level(sf::Texture &backgroundTexture, sf::Texture &platformTexture) : Ent
     setPosition(0, 200);
 
     Entity platform(platformTexture);
-    platform.setPosition(200, 710);
+    platform.setPosition(200, 440);
     platform.setScale(0.5, 0.5);
     platforms.push_back(platform);
 }
