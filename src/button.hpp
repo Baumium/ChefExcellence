@@ -2,7 +2,6 @@
 #define BUTTON_HPP
 
 #include "entity.hpp"
-#include "label.hpp"
 
 class Button : public sf::Drawable {
     private:
@@ -12,7 +11,7 @@ class Button : public sf::Drawable {
 
         sf::Sprite sprite;
 
-        Label *label;
+        sf::Text label;
 
     public:
         Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, float x, float y, std::string str, sf::Font &font, float charSize, sf::Color color);

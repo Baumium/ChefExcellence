@@ -8,13 +8,17 @@ Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, 
     sprite = sf::Sprite(normal);
     sprite.setPosition(x, y);
 
-    label = new Label(str, x, y, font, charSize, color);
+    label.setString(str);
+    label.setFont(font);
+    label.setPosition(x, y);
+    label.setCharacterSize(charSize);
+    label.setColor(color);
 }
 
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);
-    target.draw(*label, states);
+    target.draw(label, states);
 }
 
 void Button::changeState(ButtonState state) {
