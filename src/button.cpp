@@ -1,17 +1,20 @@
 #include "button.hpp"
 #include "game.hpp"
 
-Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, float x, float y) {
+Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, float x, float y, std::string str, sf::Font &font, float charSize, sf::Color color) {
     this->normal = normal;
     this->clicked = clicked;
     this->hovered = hovered;
     sprite = sf::Sprite(normal);
     sprite.setPosition(x, y);
+
+    label = new Label(str, x, y, font, charSize, color);
 }
 
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);
+    target.draw(*label, states);
 }
 
 void Button::changeState(ButtonState state) {

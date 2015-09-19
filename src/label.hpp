@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Label : sf::Drawable {
+class Label : public sf::Drawable {
     private:
         sf::Text text;
 

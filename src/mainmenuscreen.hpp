@@ -3,7 +3,6 @@
 
 #include "screen.hpp"
 #include "button.hpp"
-#include "label.hpp"
 
 class MainMenuScreen : public Screen {
     private:
@@ -12,9 +11,8 @@ class MainMenuScreen : public Screen {
         sf::Texture normalPlay;
         sf::Texture clickedPlay;
         sf::Texture hoverPlay;
+        sf::Font font;
         Button *playButton;
-
-        Label *label;
 
     public:
         MainMenuScreen(sf::View *view);
