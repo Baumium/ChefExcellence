@@ -1,5 +1,6 @@
 #include "button.hpp"
 #include "game.hpp"
+#include <iostream>
 
 Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, float x, float y, std::string str, sf::Font &font, float charSize, sf::Color color) {
     this->normal = normal;
@@ -10,9 +11,11 @@ Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, 
 
     label.setString(str);
     label.setFont(font);
-    label.setPosition(x, y);
     label.setCharacterSize(charSize);
     label.setColor(color);
+    label.setPosition(x + (sprite.getGlobalBounds().width - label.getGlobalBounds().width) / 2,
+            y + (sprite.getGlobalBounds().height - label.getGlobalBounds().height) / 2);
+    std::cout << label.getGlobalBounds().width << std::endl;
 }
 
 
