@@ -12,6 +12,9 @@ class MainMenuScreen : public Screen {
         sf::Texture clickedPlay;
         sf::Texture hoverPlay;
         sf::Font font;
+
+        sf::Text title;
+
         Button *playButton;
 
     public:

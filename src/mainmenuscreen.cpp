@@ -8,7 +8,14 @@ MainMenuScreen::MainMenuScreen(sf::View *view) {
     normalPlay.loadFromFile("./assets/ui/normalButton.png");
     clickedPlay.loadFromFile("./assets/ui/clickedButton.png");
     font.loadFromFile("./assets/ui/arial.ttf");
-    playButton = new Button(normalPlay, clickedPlay, clickedPlay, 50, 50, "Start Game", font, 24, sf::Color::White);
+
+    title.setFont(font);
+    title.setString("Chef Excellence");
+    title.setColor(sf::Color::Blue);
+    title.setPosition((Game::SCREEN_WIDTH - title.getGlobalBounds().width) / 2, title.getGlobalBounds().height * 2);
+
+    playButton = new Button(normalPlay, clickedPlay, clickedPlay, (Game::SCREEN_WIDTH - normalPlay.getSize().x) / 2, (Game::SCREEN_HEIGHT - title.getPosition().y + title.getGlobalBounds().height) / 2, "Start Game", font, 24, sf::Color::White);
+
 
 }
 
@@ -17,6 +24,7 @@ void MainMenuScreen::update() {
 }
 
 void MainMenuScreen::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    target.draw(title, states);
     target.draw(*playButton, states);
 }
 
