@@ -8,7 +8,7 @@ MainMenuScreen::MainMenuScreen(sf::View *view) {
     normalPlay.loadFromFile("./assets/ui/normalButton.png");
     clickedPlay.loadFromFile("./assets/ui/clickedButton.png");
     font.loadFromFile("./assets/ui/arial.ttf");
-    playButton = new Button(normalPlay, clickedPlay, clickedPlay, 50, 50, "Greetings", font, 24, sf::Color::White);
+    playButton = new Button(normalPlay, clickedPlay, clickedPlay, 50, 50, "Start Game", font, 24, sf::Color::White);
 
 }
 

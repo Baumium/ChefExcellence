@@ -25,7 +25,7 @@ class Player : public AnimatedSprite {
         Animation walkingLeft;
         Animation walkingRight;
         Animation climbing;
-        Animation currentAnimation;
+        Animation *currentAnimation;
 
         //Movement
         float maxHSpeed;

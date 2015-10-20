@@ -3,13 +3,9 @@
 
 GameScreen::GameScreen(sf::View *view) {
     //Create player, our venerable chef
-    chefStandingRight.loadFromFile("assets/chef/ChefStandingRight.png");
-    chefStandingLeft.loadFromFile("assets/chef/ChefStandingLeft.png");
-    chefWalkingRight.loadFromFile("assets/chef/ChefWalkingRight.png");
-    chefWalkingLeft.loadFromFile("assets/chef/ChefWalkingLeft.png");
-    chefClimbing.loadFromFile("assets/chef/ChefClimbing.png");
+    chefSheet.loadFromFile("assets/chef/chefsheet.png");
     breadstick.loadFromFile("assets/chef/Breadstick.png");
-    player = new Player(chefWalkingRight, breadstick);
+    player = new Player(chefSheet, breadstick);
 
     //Create levels
     background.loadFromFile("assets/map/level1/Background.png");

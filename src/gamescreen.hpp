@@ -11,11 +11,7 @@ class GameScreen : public Screen {
         sf::Clock frameClock;
 
         //Chef stuffs
-        sf::Texture chefStandingRight;
-        sf::Texture chefStandingLeft;
-        sf::Texture chefWalkingRight;
-        sf::Texture chefWalkingLeft;
-        sf::Texture chefClimbing;
+        sf::Texture chefSheet;
         sf::Texture breadstick;
         Player *player;
 

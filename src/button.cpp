@@ -14,8 +14,7 @@ Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, 
     label.setCharacterSize(charSize);
     label.setColor(color);
     label.setPosition(x + (sprite.getGlobalBounds().width - label.getGlobalBounds().width) / 2,
-            y + (sprite.getGlobalBounds().height - label.getGlobalBounds().height) / 2);
-    std::cout << label.getGlobalBounds().width << std::endl;
+            y + (sprite.getGlobalBounds().height - label.getGlobalBounds().height) / 4);
 }
 
 

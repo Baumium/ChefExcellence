@@ -8,15 +8,27 @@ Player::Player(const sf::Texture &texture, sf::Texture &breadstickTexture) :
     //Set up animations
     setPosition(0, 0);
 
-    walkingRight.setSpriteSheet(texture);
-    walkingRight.addFrame(sf::IntRect(0, 0, 91 / 3.0, 73));
-    walkingRight.addFrame(sf::IntRect(91 / 3.0, 0, 91 / 3.0, 73));
-    walkingRight.addFrame(sf::IntRect(91 / 3.0 * 2, 0, 91 / 3.0, 73));
-
     standingRight.setSpriteSheet(texture);
-    standingRight.addFrame(sf::IntRect(0, 0, 91 / 3.0, 73));
+    standingRight.addFrame(sf::IntRect(0, 0, 29, 73));
 
-    currentAnimation = standingRight;
+    standingLeft.setSpriteSheet(texture);
+    standingLeft.addFrame(sf::IntRect(30, 0, 29, 73));
+
+    walkingLeft.setSpriteSheet(texture);
+    walkingLeft.addFrame(sf::IntRect(0, 148, 29, 73));
+    walkingLeft.addFrame(sf::IntRect(30,148, 29, 73));
+    walkingLeft.addFrame(sf::IntRect(60, 148, 29, 73));
+
+    walkingRight.setSpriteSheet(texture);
+    walkingRight.addFrame(sf::IntRect(0, 74, 29, 73));
+    walkingRight.addFrame(sf::IntRect(30, 74, 29, 73));
+    walkingRight.addFrame(sf::IntRect(60, 74, 29, 73));
+
+    climbing.setSpriteSheet(texture);
+    climbing.addFrame(sf::IntRect(0, 222, 40, 295));
+    climbing.addFrame(sf::IntRect(42, 222, 84, 295));
+
+    currentAnimation = &standingRight;
 
     //Movement
     facingDirection = RIGHT;
@@ -81,7 +93,7 @@ void Player::throwBreadstick() {
 
 void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entity> &platforms) {
     //Update animation
-    play(currentAnimation);
+    play(*currentAnimation);
     AnimatedSprite::update(deltaTime);
 
     //Collision detection with level platforms
@@ -121,6 +133,7 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
     switch(hDirection) {
         case LEFT:
             if(canHMove) {
+                currentAnimation = &walkingLeft;
                 facingDirection = LEFT;
                 AnimatedSprite::move(-currentHSpeed, 0);
                 if(currentHSpeed < maxHSpeed) {
@@ -132,7 +145,7 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
             break;
         case RIGHT:
             if(canHMove) {
-                currentAnimation = walkingRight;
+                currentAnimation = &walkingRight;
                 facingDirection = RIGHT;
                 AnimatedSprite::move(currentHSpeed, 0);
                 if(currentHSpeed < maxHSpeed) {
@@ -144,10 +157,9 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
             break;
         default:
             if(facingDirection == RIGHT) {
-                currentAnimation = standingRight;
-            } else {
-                //TODO: currentAnimation = standingLeft
-                currentAnimation = standingRight;
+                currentAnimation = &standingRight;
+            } else if (facingDirection == LEFT) {
+                currentAnimation = &standingLeft;
             }
             currentHSpeed = minHSpeed;
             break;
@@ -204,5 +216,4 @@ void Player::update(sf::Time deltaTime, sf::Vector2f viewport, std::vector<Entit
             projectiles.erase(projectiles.begin() + i);
         }
     }
-
 }
