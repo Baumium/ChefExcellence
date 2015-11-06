@@ -3,16 +3,16 @@
 
 GameScreen::GameScreen(sf::View *view) {
     //Create player, our venerable chef
-    chefSheet.loadFromFile("assets/chef/chefsheet.png");
-    breadstick.loadFromFile("assets/chef/Breadstick.png");
+    chefSheet.loadFromFile("res/chef/chefsheet.png");
+    breadstick.loadFromFile("res/chef/Breadstick.png");
     player = new Player(chefSheet, breadstick);
 
     //Create levels
-    background.loadFromFile("assets/map/level1/Background.png");
-    platform.loadFromFile("assets/map/level1/Platform.png");
+    background.loadFromFile("res/map/level1/Background.png");
+    platform.loadFromFile("res/map/level1/Platform.png");
     level = new Level(background, platform);
     levels.push_back(*level);
-    levelHandler = new LevelHandler("assets/map/data.xml");
+    levelHandler = new LevelHandler("res/map/data.xml");
     levelHandler->createLevels(levels);
 
     //Camera

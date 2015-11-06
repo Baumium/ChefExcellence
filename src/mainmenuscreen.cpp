@@ -5,9 +5,9 @@
 MainMenuScreen::MainMenuScreen(sf::View *view) {
     this->view = view;
 
-    normalPlay.loadFromFile("./assets/ui/normalButton.png");
-    clickedPlay.loadFromFile("./assets/ui/clickedButton.png");
-    font.loadFromFile("./assets/ui/arial.ttf");
+    normalPlay.loadFromFile("./res/ui/normalButton.png");
+    clickedPlay.loadFromFile("./res/ui/clickedButton.png");
+    font.loadFromFile("./res/ui/arial.ttf");
 
     title.setFont(font);
     title.setString("Chef Excellence");
