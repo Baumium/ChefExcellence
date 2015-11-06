@@ -12,7 +12,7 @@ GameScreen::GameScreen(sf::View *view) {
     platform.loadFromFile("res/map/level1/Platform.png");
     level = new Level(background, platform);
     levels.push_back(*level);
-    levelHandler = new LevelHandler("res/map/data.xml");
+    levelHandler = new LevelHandler("res/map/level1/data.lua");
     levelHandler->createLevels(levels);
 
     //Camera

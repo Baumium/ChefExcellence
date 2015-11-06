@@ -1,7 +1,6 @@
 #include "game.hpp"
 #include "direction.hpp"
 #include "screen.hpp"
-#include "pugixml.hpp"
 #include <iostream>
 
 const int Game::SCREEN_WIDTH = 800;

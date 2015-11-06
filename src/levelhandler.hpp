@@ -2,12 +2,11 @@
 #define LEVELHANDLER_HPP
 
 #include "level.hpp"
-#include "pugixml.hpp"
+#include "../lib/selene/include/selene.h"
 
 class LevelHandler {
     private:
-        pugi::xml_document file;
-        bool isLoaded;
+        //sel::State lua;
 
     public:
         LevelHandler(const char* path);
