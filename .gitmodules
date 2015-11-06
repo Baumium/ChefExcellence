@@ -1,0 +1,3 @@
+[submodule "lib/selene"]
+	path = lib/selene
+	url = https://github.com/jeremyong/Selene/
