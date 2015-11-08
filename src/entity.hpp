@@ -10,6 +10,7 @@ class Entity : public sf::Drawable {
     public:
         Entity(const sf::Texture &texture, sf::IntRect textureRect);
         Entity(const sf::Texture &texture);
+        Entity(sf::Sprite &sprite);
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

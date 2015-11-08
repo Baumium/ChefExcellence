@@ -3,7 +3,7 @@ OBJS = src/*.cpp
 OBJ_NAME = chef
 LINKER_FLAGS = -lsfml-graphics -lsfml-window -lsfml-system -llua
 COMPILER_FLAGS = -std=c++11 -g
-WARNING_FLAGS = -Wall -Wextra
+WARNING_FLAGS = #-Wall -Wextra
 BIN = bin/
 
 #Compile and run

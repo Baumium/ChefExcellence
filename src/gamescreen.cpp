@@ -2,6 +2,7 @@
 #include "game.hpp"
 
 GameScreen::GameScreen(sf::View *view) {
+    /*
     //Create player, our venerable chef
     chefSheet.loadFromFile("res/chef/chefsheet.png");
     breadstick.loadFromFile("res/chef/Breadstick.png");
@@ -13,18 +14,26 @@ GameScreen::GameScreen(sf::View *view) {
     level = new Level(background, platform);
     levels.push_back(*level);
     levelHandler = new LevelHandler("res/map/level1/data.lua");
-    levelHandler->createLevels(levels);
+    levelHandler->createLevel(levels);
+*/
+
+    levelHandler = new LevelHandler("res/map/level1/data.lua");
+    levelHandler->createLevel(level);
 
     //Camera
     this->view = view;
 }
 
 void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    /*
     target.draw(*level, states);
     target.draw(*player, states);
+    */
+    target.draw(level, states);
 }
 
 void GameScreen::update() {
+    /*
         sf::Time frameTime = frameClock.restart();
 
         //Player horiztonal movement
@@ -50,6 +59,7 @@ void GameScreen::update() {
 
         view->move((player->getPosition().x - view->getCenter().x) / 10.0,
                 (player->getPosition().y + player->getLocalBounds().height - Game::SCREEN_HEIGHT / 2 - view->getCenter().y + 50) / 20.0);
+                */
 }
 
 void GameScreen::handleEvent(sf::Event &event) {

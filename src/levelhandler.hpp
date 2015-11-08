@@ -1,17 +1,17 @@
 #ifndef LEVELHANDLER_HPP
 #define LEVELHANDLER_HPP
 
-#include "level.hpp"
 #include "../lib/selene/include/selene.h"
+#include "level.hpp"
 
 class LevelHandler {
     private:
-        //sel::State lua;
+        sel::State lua{true};
+        std::vector<sf::Texture> textures;
 
     public:
         LevelHandler(const char* path);
-        void createLevels(std::vector<Level> &levels);
+        void createLevel(Level &level);
 };
-
 
 #endif

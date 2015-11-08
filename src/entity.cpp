@@ -1,12 +1,12 @@
 #include "entity.hpp"
 
 
-Entity::Entity(const sf::Texture &texture) : sprite(texture) {
-
-}
-
 Entity::Entity(const sf::Texture &texture, sf::IntRect textureRect) : sprite(texture) {
     sprite.setTextureRect(textureRect);
+}
+
+Entity::Entity(sf::Sprite &sprite) {
+    this->sprite = sprite;
 }
 
 void Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
@@ -32,4 +32,3 @@ sf::Vector2f Entity::getPosition() const {
 sf::FloatRect Entity::getRect() const {
     return sprite.getGlobalBounds();
 }
-

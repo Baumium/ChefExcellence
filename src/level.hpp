@@ -1,17 +1,25 @@
 #ifndef LEVEL_HPP
 #define LEVEL_HPP
 
+#include <SFML/Graphics.hpp>
 #include "entity.hpp"
+#include "AnimatedSprite.hpp"
 
-class Level : public Entity {
+class Level : public sf::Drawable {
     private:
-        std::vector<Entity> platforms;
+        sf::Sprite backgroundSprite;
+        std::vector<Entity*> entities;
 
     public:
-        Level(sf::Texture &backgroundTexture, sf::Texture &platformTexture);
+        Level();
+
+        void setBackground(sf::Texture &texture);
+        void addEntity(sf::Sprite &sprite);
+        void addEntity(AnimatedSprite &sprite);
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-        std::vector<Entity>& getPlatforms();
+        void update(float delta);
+        std::vector<Entity*>& getEntities();
 };
 
 #endif

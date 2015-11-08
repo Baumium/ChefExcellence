@@ -4,6 +4,7 @@
 #include "screen.hpp"
 #include "player.hpp"
 #include "levelhandler.hpp"
+#include "level.hpp"
 
 class GameScreen : public Screen {
     private:
@@ -18,7 +19,7 @@ class GameScreen : public Screen {
         //Level stuffs
         sf::Texture background;
         sf::Texture platform;
-        Level *level;
+        Level level;
         std::vector<Level> levels;
         LevelHandler *levelHandler;
 
