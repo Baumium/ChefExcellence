@@ -26,13 +26,11 @@ void LevelHandler::createLevel(Level &level) {
         texture->loadFromFile(graphics["spriteSheet"]);
         textures.push_back(*texture);
 
-        sf::Sprite sprite;
-        sprite.setTexture(*texture);
         auto stillRight = graphics["states"]["stillRight"]["frames"][1];
-        sprite.setTextureRect(sf::IntRect(stillRight[1], stillRight[2], stillRight[3], stillRight[4]));
-        sprite.setPosition((int)entityParent["x"], (int)entityParent["y"]);
+    //    sprite.setTextureRect(sf::IntRect(stillRight[1], stillRight[2], stillRight[3], stillRight[4]));
+    //    sprite.setPosition((int)entityParent["x"], (int)entityParent["y"]);
 
-        level.addEntity(sprite);
+        level.addEntity(*texture, sf::IntRect(stillRight[1], stillRight[2], stillRight[3], stillRight[4]));
     }
     texture = new sf::Texture();
 }

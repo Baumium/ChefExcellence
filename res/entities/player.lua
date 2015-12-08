@@ -1,5 +1,7 @@
 -- Player entity, that is to say, Chef Excellence
 local player = {
+    userControlled = true,
+
     graphics = {
         spriteSheet = "res/chef/chefsheet.png",
         states = {

@@ -3,6 +3,7 @@
 
 #include "../lib/selene/include/selene.h"
 #include "level.hpp"
+#include <SFML/Graphics.hpp>
 
 class LevelHandler {
     private:

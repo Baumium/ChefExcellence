@@ -14,8 +14,8 @@ class Level : public sf::Drawable {
         Level();
 
         void setBackground(sf::Texture &texture);
-        void addEntity(sf::Sprite &sprite);
-        void addEntity(AnimatedSprite &sprite);
+        void addEntity(sf::Texture &texture, sf::IntRect textureRect);
+        void addEntity(sf::Texture &texture);
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         void update(float delta);

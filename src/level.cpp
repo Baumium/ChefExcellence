@@ -1,6 +1,6 @@
 #include "level.hpp"
 #include "game.hpp"
-#include <iostream>
+#include "staticentity.hpp"
 
 Level::Level() {
 
@@ -11,8 +11,12 @@ void Level::setBackground(sf::Texture &texture) {
     backgroundSprite.setPosition(0, 0);
 }
 
-void Level::addEntity(sf::Sprite &sprite) {
-    entities.push_back(new Entity(sprite));
+void Level::addEntity(sf::Texture &texture, sf::IntRect textureRect) {
+    entities.push_back(new StaticEntity(texture, textureRect));
+}
+
+void Level::addEntity(sf::Texture &texture) {
+    //TODO: implement adding of animated entities
 }
 
 void Level::draw(sf::RenderTarget &target, sf::RenderStates states) const {
