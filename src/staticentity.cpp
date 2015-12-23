@@ -9,7 +9,7 @@ void StaticEntity::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(sprite, states);
 }
 
-void StaticEntity::update(float deltaTime) {
+void StaticEntity::update(sf::Time deltaTime) {
 
 }
 

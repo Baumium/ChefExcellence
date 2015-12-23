@@ -1,16 +1,24 @@
 #include "animatedentity.hpp"
+#include <iostream>
 
-AnimatedEntity::AnimatedEntity(std::unordered_map<Direction, Animation> &animations) {
-    sprite(
+AnimatedEntity::AnimatedEntity(std::map<Direction, Animation> &animations) {
     this->animations = animations;
+
+    sf::IntRect stuff = animations.at(RIGHT).getFrame(0);
+    std::cout << stuff.left << "\t" << stuff.top << "\t" << stuff.width << "\t" << stuff.height << std::endl;
 }
 
 void AnimatedEntity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(sprite, states);
 }
 
-void AnimatedEntity::update(float deltaTime) {
+void AnimatedEntity::update(sf::Time deltaTime) {
     sprite.update(deltaTime);
+}
+
+void AnimatedEntity::changeAnimation(Direction state) {
+    currentState = state;
+    sprite.setAnimation(animations.at(state));
 }
 
 void AnimatedEntity::move(int x, int y) {

@@ -2,7 +2,7 @@
 backgroundSrc = "res/map/level1/background.png";
 
 
--- Alow us to access lua files in the entities directory
+-- Allow us to access lua files in the entities directory
 package.path = package.path .. ";../../entities/?.lua";
 entities = {};
 

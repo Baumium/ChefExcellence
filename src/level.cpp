@@ -15,8 +15,8 @@ void Level::addEntity(sf::Texture &texture, sf::IntRect textureRect) {
     entities.push_back(new StaticEntity(texture, textureRect));
 }
 
-void Level::addEntity(sf::Texture &texture) {
-    //TODO: implement adding of animated entities
+void Level::addEntity(Entity *entity) {
+    entities.push_back(entity);
 }
 
 void Level::draw(sf::RenderTarget &target, sf::RenderStates states) const {

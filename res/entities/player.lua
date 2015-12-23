@@ -4,44 +4,53 @@ local player = {
 
     graphics = {
         spriteSheet = "res/chef/chefsheet.png",
+        isAnimated = true,
         states = {
-            stillRight = {
-                isAnimated = false,
+            { -- Still, right
+                stateType = 0,
                 frames = {
-                    {0, 0, 29, 73}
+                    {0, 0, 29, 73},
+                    size = 1
                 }
             },
-            stillLeft = {
-                isAnimated = false,
+            { -- Still, left
+                stateType = 1,
                 frames = {
-                    {30, 0, 29, 73}
+                    {30, 0, 29, 73},
+                    size = 1
                 }
             },
-            walkingRight = {
-                isAnimated = true,
+            { -- Walking, right
+                stateType = 2,
                 frames = {
                     {0, 74, 29, 73},
                     {30, 74, 29, 73},
-                    {60, 74, 29, 73}
+                    {60, 74, 29, 73},
+                    size = 3
                 }
             },
-            walkingLeft = {
-                isAnimated = true,
+            { -- Walking, left
+                stateType = 3,
                 frames = {
                     {0, 148, 29, 73},
                     {30, 148, 29, 73},
-                    {60, 148, 29, 73}
+                    {60, 148, 29, 73},
+                    size = 3
                 }
             },
-            climbing = {
-                isAnimated = true,
+            { -- Climbing
+                stateType = 4,
                 frames = {
                     {0, 222, 40, 295},
-                    {42, 222, 84, 295}
+                    {42, 222, 84, 295},
+                    size = 2
                 }
-            }
+            },
+            size = 5
         }
     }
 };
+
+print(player.graphics.stateNumber);
 
 return player;
