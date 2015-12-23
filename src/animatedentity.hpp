@@ -17,7 +17,7 @@ class AnimatedEntity : public Entity {
         AnimatedEntity(std::map<Direction, Animation> &animations);
 
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-        void update(sf::Time deltaTime);
+        void update(sf::Time delta);
 
         void changeAnimation(Direction state);
 

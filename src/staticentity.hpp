@@ -11,7 +11,7 @@ class StaticEntity : public Entity {
         StaticEntity(const sf::Texture &texture, sf::IntRect textureRect);
 
         void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-        void update(sf::Time deltaTime);
+        void update(sf::Time delta);
 
         void move(int x, int y);
         void setPosition(int x, int y);

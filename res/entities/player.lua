@@ -48,6 +48,11 @@ local player = {
             },
             size = 5
         }
+    },
+
+    physics = {
+        movable = true,
+        mass = 10
     }
 };
 

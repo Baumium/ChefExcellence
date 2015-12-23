@@ -3,17 +3,14 @@
 
 AnimatedEntity::AnimatedEntity(std::map<Direction, Animation> &animations) {
     this->animations = animations;
-
-    sf::IntRect stuff = animations.at(RIGHT).getFrame(0);
-    std::cout << stuff.left << "\t" << stuff.top << "\t" << stuff.width << "\t" << stuff.height << std::endl;
 }
 
 void AnimatedEntity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(sprite, states);
 }
 
-void AnimatedEntity::update(sf::Time deltaTime) {
-    sprite.update(deltaTime);
+void AnimatedEntity::update(sf::Time delta) {
+    sprite.update(delta);
 }
 
 void AnimatedEntity::changeAnimation(Direction state) {

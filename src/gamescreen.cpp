@@ -33,6 +33,9 @@ void GameScreen::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 void GameScreen::update() {
+    sf::Time delta = frameClock.restart();
+
+    level.update(delta);
     /*
         sf::Time frameTime = frameClock.restart();
 

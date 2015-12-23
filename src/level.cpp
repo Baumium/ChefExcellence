@@ -20,10 +20,18 @@ void Level::addEntity(Entity *entity) {
 }
 
 void Level::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    //Draw background
     target.draw(backgroundSprite, states);
 
+    //Draw the rest of the sprites
     for(Entity *entity : entities) {
         target.draw(*entity, states);
+    }
+}
+
+void Level::update(sf::Time delta) {
+    for(Entity *entity : entities) {
+        entity->update(delta);
     }
 }
 

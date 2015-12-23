@@ -11,7 +11,7 @@ LevelHandler::LevelHandler(const char* path) {
 void LevelHandler::createLevel(Level &level) {
     level = Level();
 
-    //Load textures
+    //Set background texture
     sf::Texture *texture = new sf::Texture();
     texture->loadFromFile(lua["backgroundSrc"]);
     textures.push_back(*texture);
@@ -23,11 +23,13 @@ void LevelHandler::createLevel(Level &level) {
         auto entityParent = entityArray[i];
         auto entityObject = entityParent[1];
 
+        //Start creation of entity
         Entity *entity;
 
         //Graphical data
         auto graphics = entityObject["graphics"];
         bool isAnimated = graphics["isAnimated"];
+        texture = new sf::Texture();
         texture->loadFromFile(graphics["spriteSheet"]);
         if(isAnimated) {
             std::map<Direction, Animation> animations;
@@ -49,25 +51,19 @@ void LevelHandler::createLevel(Level &level) {
 
                 animations.insert(std::pair<Direction, Animation>(static_cast<Direction>(stateType), animation));
             }
+            std::cout << animations.size() << std::endl;
 
             entity = new AnimatedEntity(animations);
-
             entity->setPosition((int)entityParent["x"], (int)entityParent["y"]);
         } else {
             //TODO: actually do something here
             entity = new StaticEntity(*texture, sf::IntRect(0, 0, 0, 0));
         }
 
-        texture = new sf::Texture();
-        texture->loadFromFile(graphics["spriteSheet"]);
         textures.push_back(*texture);
-
-        auto stillRight = graphics["states"]["stillRight"]["frames"][1];
-    //    sprite.setTextureRect(sf::IntRect(stillRight[1], stillRight[2], stillRight[3], stillRight[4]));
-    //    sprite.setPosition((int)entityParent["x"], (int)entityParent["y"]);
 
         level.addEntity(entity);
     }
-    texture = new sf::Texture();
+    texture = nullptr;
 }
 

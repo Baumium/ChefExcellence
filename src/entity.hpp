@@ -6,7 +6,7 @@
 class Entity : public sf::Drawable {
     public:
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
-        virtual void update(sf::Time deltaTime) = 0;
+        virtual void update(sf::Time delta) = 0;
 
         virtual void move(int x, int y) = 0;
         virtual void setPosition(int x, int y) = 0;

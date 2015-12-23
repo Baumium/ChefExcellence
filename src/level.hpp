@@ -20,7 +20,7 @@ class Level : public sf::Drawable {
         void addEntity(Entity *entity);
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-        void update(float delta);
+        void update(sf::Time delta);
         std::vector<Entity*>& getEntities();
 };
 
