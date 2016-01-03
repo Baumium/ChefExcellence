@@ -2,7 +2,6 @@
 #define GAMESCREEN_HPP
 
 #include "screen.hpp"
-#include "player.hpp"
 #include "levelhandler.hpp"
 #include "level.hpp"
 
@@ -14,7 +13,6 @@ class GameScreen : public Screen {
         //Chef stuffs
         sf::Texture chefSheet;
         sf::Texture breadstick;
-        Player *player;
 
         //Level stuffs
         sf::Texture background;

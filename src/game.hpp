@@ -2,7 +2,6 @@
 #define GAME_HPP
 
 #include <SFML/Graphics.hpp>
-#include "player.hpp"
 #include "gamescreen.hpp"
 #include "mainmenuscreen.hpp"
 #include "level.hpp"

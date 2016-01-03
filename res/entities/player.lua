@@ -7,21 +7,24 @@ local player = {
         isAnimated = true,
         states = {
             { -- Still, right
-                stateType = 0,
+                action = 0,
+                direction = 0,
                 frames = {
                     {0, 0, 29, 73},
                     size = 1
                 }
             },
             { -- Still, left
-                stateType = 1,
+                action = 0,
+                direction = 1,
                 frames = {
                     {30, 0, 29, 73},
                     size = 1
                 }
             },
             { -- Walking, right
-                stateType = 2,
+                action = 1,
+                direction = 0,
                 frames = {
                     {0, 74, 29, 73},
                     {30, 74, 29, 73},
@@ -30,7 +33,8 @@ local player = {
                 }
             },
             { -- Walking, left
-                stateType = 3,
+                action = 1,
+                direction = 1,
                 frames = {
                     {0, 148, 29, 73},
                     {30, 148, 29, 73},
@@ -39,7 +43,8 @@ local player = {
                 }
             },
             { -- Climbing
-                stateType = 4,
+                action = 2,
+                direction = 2,
                 frames = {
                     {0, 222, 40, 295},
                     {42, 222, 84, 295},

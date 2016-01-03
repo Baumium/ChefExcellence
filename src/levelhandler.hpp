@@ -8,7 +8,7 @@
 class LevelHandler {
     private:
         sel::State lua{true};
-        std::vector<sf::Texture> textures;
+        std::vector<sf::Texture*> textures;
 
     public:
         LevelHandler(const char* path);

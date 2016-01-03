@@ -1,5 +1,5 @@
 CC = g++
-OBJS = src/*.cpp
+OBJS = src/*.cpp src/modules/*.cpp
 OBJ_NAME = chef
 LINKER_FLAGS = -lsfml-graphics -lsfml-window -lsfml-system -llua
 COMPILER_FLAGS = -std=c++11 -g

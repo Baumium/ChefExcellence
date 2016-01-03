@@ -1,5 +1,4 @@
 #include "game.hpp"
-#include "direction.hpp"
 #include "screen.hpp"
 #include <iostream>
 

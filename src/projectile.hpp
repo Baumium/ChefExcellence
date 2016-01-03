@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "AnimatedSprite.hpp"
-#include "direction.hpp"
+#include "modules/direction.hpp"
 
 class Projectile : public AnimatedSprite {
     private:

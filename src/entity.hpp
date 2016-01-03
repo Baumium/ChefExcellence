@@ -2,17 +2,26 @@
 #define ENTITY_HPP
 
 #include <SFML/Graphics.hpp>
+#include "modules/module.hpp"
+#include "modules/moduletype.hpp"
 
 class Entity : public sf::Drawable {
-    public:
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
-        virtual void update(sf::Time delta) = 0;
+    private:
+        std::map<ModuleType, Module*> modules;
 
-        virtual void move(int x, int y) = 0;
-        virtual void setPosition(int x, int y) = 0;
-        virtual void setScale(float x, float y) = 0;
-        virtual sf::Vector2f getPosition() const = 0;
-        virtual sf::FloatRect getRect() const = 0;
+    public:
+        Entity();
+
+        void addModule(ModuleType type, Module *module);
+
+        void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+        void update(sf::Time &delta);
+
+        void move(int x, int y);
+        void setPosition(int x, int y);
+        void setScale(float x, float y);
+        sf::Vector2f getPosition() const;
+        sf::FloatRect getRect() const;
 };
 
 #endif

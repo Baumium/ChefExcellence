@@ -2,7 +2,7 @@
 #define DIRECTION_HPP
 
 enum Direction {
-    LEFT,
+    LEFT = 0,
     RIGHT,
     UP,
     DOWN,
