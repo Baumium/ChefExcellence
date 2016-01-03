@@ -13,7 +13,7 @@ void AnimatedGraphicsModule::draw(sf::RenderTarget &target, sf::RenderStates &st
     target.draw(sprite, states);
 }
 
-void AnimatedGraphicsModule::update(sf::Time &delta) {
+void AnimatedGraphicsModule::update(sf::Time &delta, Entity &entity) {
     sprite.update(delta);
 }
 

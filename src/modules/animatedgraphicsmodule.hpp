@@ -18,7 +18,7 @@ class AnimatedGraphicsModule : public Module {
         void addAnimation(EntityState state, Animation &animation);
 
         void draw(sf::RenderTarget &target, sf::RenderStates &states) const;
-        void update(sf::Time &delta);
+        void update(sf::Time &delta, Entity &entity);
 
         void changeAnimation(EntityState state);
 

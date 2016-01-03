@@ -1,6 +1,5 @@
 #include "level.hpp"
 #include "game.hpp"
-#include "staticentity.hpp"
 
 Level::Level() {
 

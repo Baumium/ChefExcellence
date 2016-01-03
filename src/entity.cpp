@@ -12,7 +12,7 @@ void Entity::addModule(ModuleType type, Module *module) {
 
 void Entity::update(sf::Time &delta) {
     for(auto iterator = modules.begin(); iterator != modules.end(); iterator++) {
-        iterator->second->update(delta);
+        iterator->second->update(delta, this);
     }
 }
 
@@ -25,5 +25,11 @@ void Entity::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 void Entity::setPosition(int x, int y) {
     if(modules.count(GRAPHICS) > 0) {
        static_cast<AnimatedGraphicsModule*>(modules.at(GRAPHICS))->setPosition(x, y);
+    }
+}
+
+void Entity::move(int x, int y) {
+    if(modules.count(GRAPHICS) > 0) {
+        static_cast<AnimatedGraphicsModule*>(modules.at(GRAPHICS))->move(x, y);
     }
 }

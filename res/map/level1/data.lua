@@ -9,10 +9,14 @@ entities = {};
 player = require("res/entities/player");
 entities[1] = {
     player,
+
     x = 50,
     y = 50,
     action = 0,
-    direction = 0
+    direction = 0,
+
+    floorHeight = 300.0,
+    gravity = 10.0
 };
 
 entitiesSize = #entities;

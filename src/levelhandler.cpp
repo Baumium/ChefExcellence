@@ -1,6 +1,7 @@
 #include "levelhandler.hpp"
 #include "modules/module.hpp"
 #include "modules/animatedgraphicsmodule.hpp"
+#include "modules/physicsmodule.hpp"
 #include <iostream>
 
 LevelHandler::LevelHandler(const char* path) {
@@ -69,8 +70,24 @@ void LevelHandler::createLevel(Level &level) {
         } else {
             //TODO: actually do something here
         }
-
         textures.push_back(texture);
+
+        //Physics module
+        auto physics = entityObject["physics"];
+        bool canMove = physics["canMove"];
+        bool canFall = physics["canFall"];
+        int  mass = physics["mass"];
+        int floorHeight = entityParent["floorHeight"];
+        int gravity = entityParent["gravity"];
+
+
+        PhysicsModule *physicsModule = new PhysicsModule();
+        physicsModule->setMovable(canMove);
+        physicsModule->setFall(canFall);
+        physicsModule->setMass(mass);
+        physicsModule->setFloorHeight(floorHeight);
+        physicsModule->setGravity(gravity);
+        entity.addModule(PHYSICS, physicsModule);
 
         level.addEntity(entity);
     }

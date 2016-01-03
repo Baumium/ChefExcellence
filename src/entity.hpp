@@ -17,6 +17,8 @@ class Entity : public sf::Drawable {
         void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         void update(sf::Time &delta);
 
+        Module* getModule(ModuleType type);
+
         void move(int x, int y);
         void setPosition(int x, int y);
         void setScale(float x, float y);

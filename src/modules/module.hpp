@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "moduletype.hpp"
+#include "../entity.hpp"
 
 class Module {
     private:
@@ -10,7 +11,7 @@ class Module {
     public:
         Module();
 
-        virtual void update(sf::Time &delta);
+        virtual void update(sf::Time &delta, Entity &entity);
         virtual void draw(sf::RenderTarget &target, sf::RenderStates &states) const;
 };
 

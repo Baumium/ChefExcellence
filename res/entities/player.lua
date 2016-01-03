@@ -56,8 +56,9 @@ local player = {
     },
 
     physics = {
-        movable = true,
-        mass = 10
+        canMove = true,
+        canFall = true,
+        mass = 10.0
     }
 };
 
