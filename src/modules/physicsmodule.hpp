@@ -12,6 +12,8 @@ class PhysicsModule : public Module {
         float floorHeight;
         float gravity;
 
+        sf::Vector2<float> velocity;
+
     public:
         PhysicsModule();
 

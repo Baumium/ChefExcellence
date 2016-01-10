@@ -1,6 +1,7 @@
 #include "button.hpp"
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include "game.hpp"
-#include <iostream>
 
 Button::Button(sf::Texture &normal, sf::Texture &clicked, sf::Texture &hovered, float x, float y, std::string str, sf::Font &font, float charSize, sf::Color color) {
     this->normal = normal;

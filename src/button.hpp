@@ -1,7 +1,12 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
-#include "entity.hpp"
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Window/Event.hpp>
 
 class Button : public sf::Drawable {
     private:

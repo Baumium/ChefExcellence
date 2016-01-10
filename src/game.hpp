@@ -1,11 +1,9 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 #include "gamescreen.hpp"
 #include "mainmenuscreen.hpp"
-#include "level.hpp"
-#include "levelhandler.hpp"
 
 class Game {
     private:

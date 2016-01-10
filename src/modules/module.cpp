@@ -4,7 +4,7 @@ Module::Module() {
 
 }
 
-void Module::update(sf::Time &delta) {
+void Module::update(sf::Time &delta, Entity &entity) {
 
 }
 

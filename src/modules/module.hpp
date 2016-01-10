@@ -5,6 +5,8 @@
 #include "moduletype.hpp"
 #include "../entity.hpp"
 
+class Entity;
+
 class Module {
     private:
         ModuleType type;

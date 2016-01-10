@@ -1,6 +1,5 @@
 #include "game.hpp"
 #include "screen.hpp"
-#include <iostream>
 
 const int Game::SCREEN_WIDTH = 800;
 const int Game::SCREEN_HEIGHT = 480;

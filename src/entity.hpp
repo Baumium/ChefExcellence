@@ -5,6 +5,8 @@
 #include "modules/module.hpp"
 #include "modules/moduletype.hpp"
 
+class Module;
+
 class Entity : public sf::Drawable {
     private:
         std::map<ModuleType, Module*> modules;

@@ -7,13 +7,23 @@ PhysicsModule::PhysicsModule() {
 
     mass = 0;
     floorHeight = 0;
+
+    velocity.x = 0;
+    velocity.y = 0;
 }
 
 void PhysicsModule::update(sf::Time &delta, Entity &entity) {
     //Fall
     if(canFall) {
-
+        if(entity.getPosition().y >= floorHeight) {
+            velocity.y = 0;
+            entity.setPosition(entity.getPosition().x, floorHeight);
+        } else {
+            velocity.y += gravity * delta.asSeconds();
+        }
     }
+
+    entity.move(velocity.x, velocity.y);
 }
 
 void PhysicsModule::setMovable(bool movable) {
