@@ -15,8 +15,8 @@ entities[1] = {
     action = 0,
     direction = 0,
 
-    floorHeight = 300.0,
-    gravity = 10.0
+    floorHeight = 400.0,
+    gravity = 25.0
 };
 
 entitiesSize = #entities;

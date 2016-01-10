@@ -1,4 +1,5 @@
 #include "physicsmodule.hpp"
+#include <iostream>
 
 PhysicsModule::PhysicsModule() {
     //Set defaults
@@ -20,6 +21,7 @@ void PhysicsModule::update(sf::Time &delta, Entity &entity) {
             entity.setPosition(entity.getPosition().x, floorHeight);
         } else {
             velocity.y += gravity * delta.asSeconds();
+            std::cout << delta.asSeconds() << std::endl;
         }
     }
 

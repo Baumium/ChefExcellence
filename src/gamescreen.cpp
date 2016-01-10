@@ -72,4 +72,5 @@ void GameScreen::handleEvent(sf::Event &event) {
 void GameScreen::start() {
     Screen::start();
     view->reset(sf::FloatRect(0, 0, Game::SCREEN_WIDTH, Game::SCREEN_HEIGHT));
+    frameClock.restart();
 }

@@ -7,7 +7,7 @@
 
 class GameScreen : public Screen {
     private:
-        //For use in animations
+        //For use in updates
         sf::Clock frameClock;
 
         //Chef stuffs
