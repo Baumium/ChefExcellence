@@ -20,6 +20,8 @@ class EntityState {
         Action getAction() const;
 
         friend bool operator <(const EntityState &lhs, const EntityState &rhs);
+        friend bool operator ==(const EntityState &lhs, const EntityState &rhs);
+        friend bool operator !=(const EntityState &lhs, const EntityState &rhs);
 };
 
 #endif

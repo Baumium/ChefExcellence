@@ -8,8 +8,6 @@
 class Entity;
 
 class Module {
-    private:
-        ModuleType type;
     public:
         Module();
 

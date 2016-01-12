@@ -18,8 +18,11 @@ void AnimatedGraphicsModule::update(sf::Time &delta, Entity &entity) {
 }
 
 void AnimatedGraphicsModule::changeAnimation(EntityState state) {
-    currentState = state;
-    sprite.setAnimation(animations.at(state));
+    auto animation = animations.find(state);
+    if(currentState != state && animation != animations.end()) {
+        currentState = state;
+        sprite.setAnimation(animation->second);
+    }
 }
 
 void AnimatedGraphicsModule::move(int x, int y) {

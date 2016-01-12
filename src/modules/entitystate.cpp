@@ -26,6 +26,14 @@ Action EntityState::getAction() const {
     return action;
 }
 
-bool operator<(const EntityState &lhs, const EntityState &rhs) {
-    return (lhs.getAction() < rhs.getAction()) && (lhs.getDirection() < rhs.getDirection());
+bool operator <(const EntityState &lhs, const EntityState &rhs) {
+    return (lhs.getAction() < rhs.getAction()) || (lhs.getDirection() < rhs.getDirection());
+}
+
+bool operator ==(const EntityState &lhs, const EntityState &rhs) {
+    return (lhs.getDirection() == rhs.getDirection()) && (lhs.getAction() == rhs.getAction());
+}
+
+bool operator !=(const EntityState &lhs, const EntityState &rhs) {
+    return (lhs.getDirection() != rhs.getDirection()) || (lhs.getAction() != rhs.getAction());
 }

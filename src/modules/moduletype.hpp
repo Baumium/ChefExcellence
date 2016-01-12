@@ -3,7 +3,8 @@
 
 enum ModuleType {
     GRAPHICS,
-    PHYSICS
+    PHYSICS,
+    CONTROL
 };
 
 #endif

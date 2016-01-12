@@ -2,6 +2,7 @@
 #include "modules/module.hpp"
 #include "modules/animatedgraphicsmodule.hpp"
 #include "modules/physicsmodule.hpp"
+#include "modules/controlmodule.hpp"
 #include <iostream>
 
 LevelHandler::LevelHandler(const char* path) {
@@ -88,6 +89,37 @@ void LevelHandler::createLevel(Level &level) {
         physicsModule->setFloorHeight(floorHeight);
         physicsModule->setGravity(gravity);
         entity.addModule(PHYSICS, physicsModule);
+
+        //Control module
+        auto control = entityObject["control"];
+        bool userControlled = control["userControlled"];
+        if(userControlled) {
+            ControlModule *controlModule = new ControlModule();
+
+            int up = control["up"];
+            EntityState upState(UP, CLIMBING);
+            sf::Keyboard::Key upKey = static_cast<sf::Keyboard::Key>(up);
+            controlModule->addKey(upState, upKey);
+
+            int down = control["down"];
+            EntityState downState(DOWN, CLIMBING);
+            sf::Keyboard::Key downKey = static_cast<sf::Keyboard::Key>(down);
+            controlModule->addKey(downState, downKey);
+
+            int left = control["left"];
+            EntityState leftState(LEFT, WALKING);
+            sf::Keyboard::Key leftKey = static_cast<sf::Keyboard::Key>(left);
+            controlModule->addKey(leftState, leftKey);
+
+            int right = control["right"];
+            EntityState rightState(RIGHT, WALKING);
+            sf::Keyboard::Key rightKey = static_cast<sf::Keyboard::Key>(right);
+            controlModule->addKey(rightState, rightKey);
+
+            std::cout << upState.getDirection() << "\t" << downState.getDirection() << "\t" << leftState.getDirection() << "\t" << rightState.getDirection() << std::endl;
+
+            entity.addModule(CONTROL, controlModule);
+        }
 
         level.addEntity(entity);
     }

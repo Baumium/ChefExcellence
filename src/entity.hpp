@@ -4,12 +4,14 @@
 #include <SFML/Graphics.hpp>
 #include "modules/module.hpp"
 #include "modules/moduletype.hpp"
+#include "modules/entitystate.hpp"
 
 class Module;
 
 class Entity : public sf::Drawable {
     private:
         std::map<ModuleType, Module*> modules;
+        EntityState state;
 
     public:
         Entity();
@@ -18,6 +20,9 @@ class Entity : public sf::Drawable {
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const;
         void update(sf::Time &delta);
+
+        void setState(EntityState state);
+        EntityState getState() const;
 
         Module* getModule(ModuleType type);
 
